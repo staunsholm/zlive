@@ -1,0 +1,73 @@
+set chalk line every 100m (or whatever zlogger can handle)
+
+/race/rider/RiderID POST
+{
+	RiderID: RiderID,
+	name: xxx,
+	weight: xx,
+	height: yyy,
+	ftp: zzz,
+	...
+}
+
+/race/pos POST
+{
+	line: LineID,
+	riderWatching: RiderID,
+	riderSeen: RiderID,
+	timestamp: xxxx,
+	forward: boolean,
+	meters: meters,
+	mwh: xxx,
+	duration: seconds?,
+	elevation: meters,
+	speed: milimeters pr. hour,
+	hr: bpm
+}
+
+/race/rider/RiderID GET - latest update
+{
+	timestamp: xxxx,
+	forward: boolean,
+	meters: meters,
+	mwh: xxx,
+	duration: seconds?,
+	elevation: meters,
+	speed: millimeters pr. hour,
+	hr: bpm
+}
+
+/race/rider/RiderID?filter=timestamp:xxxxx GET - rider at specific point in time
+
+/race/ride?RiderID=xxx&startline=LineID&finishline=LineID&laps=5&begintime=yyyyyy GET - a ride for a specific rider
+
+/race/race?startline=LineID&finishline=LineID&laps=5&begintime=yyyyyy&maxduration=1h30m&cat=A&racename=ZTR-EB GET - results for a race category
+
+/race/race?startline=LineID&finishline=LineID&laps=5&begintime=yyyyyy&maxduration=1h30m&racename=ZTR-EB GET - results for a race
+
+/race/snapshot?startline=LineID&finishline=LineID&laps=5&begintime=yyyyyy&maxduration=1h30m&racename=ZTR-EB GET - current standings for a race
+{
+	meters: meters,
+	timestamp: xxxx,
+	covered: [
+		{from: meters, to: meters},... // areas that have not received updates in the last XX seconds
+	],
+	cats: [
+		{
+			cat: 'A',
+			riders: [Rider]
+		},
+		...
+	],
+	groups: [
+		{
+			pos: number,
+			riders: [Rider],
+			name: ... (Orange jersey, front rider name, tete de la course, ...)
+			distanceToNextGroup: xxxxx,
+			timeToNextGroup: yyyyy, // hard to calculate
+		},
+		...
+	],
+	all: [Rider],
+}

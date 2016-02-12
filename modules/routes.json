@@ -1,0 +1,33 @@
+[
+  {
+    "name": "figure 8 forward",
+    "lines": []
+  },
+  {
+    "name": "figure 8 forward with kom finish and neutral to sprint",
+    "lines": [
+      {
+        "line_id": 0,
+        "forward": 1
+      },
+      {
+        "route": "figure 8 forward"
+      },
+      {
+        "line_id": 1,
+        "forward": 1
+      }
+    ]
+  },
+  {
+    "name": "2 laps figure 8 forward",
+    "lines": [
+      {
+        "route": "figure 8 forward"
+      },
+      {
+        "route": "figure 8 forward"
+      }
+    ]
+  }
+]
